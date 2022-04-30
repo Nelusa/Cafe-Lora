@@ -37,21 +37,20 @@ orderBtnElm.addEventListener('click', orderCoffee); */
 
 // "Správná" verze (s proměnnou ordered pro pozdější použití v komponentách)
 
-/*const orderBtnElm = document.querySelector('.order-btn');
-let ordered = false;
-
-const orderCoffee = () => {
+/*let ordered = false;
+const orderBtnElm = document.querySelector('.order-btn');
+orderBtnElm.addEventListener('click', () => {
+  const drinkCupElm = document.querySelector('.drink__cup');
   if (!ordered) {
     orderBtnElm.textContent = 'Zrušit';
-    document.querySelector('.drink__cup').classList.add('drink__cup--selected');
-    orderBtnElm.addEventListener('click', orderCoffee);
+    drinkCupElm.classList.add('drink__cup--selected');
     ordered = true;
   } else {
     orderBtnElm.textContent = 'Objednat';
-    document
-      .querySelector('.drink__cup')
-      .classList.remove('drink__cup--selected');
+    drinkCupElm.classList.remove('drink__cup--selected');
     ordered = false;
+  }
+});
   }
 }; */
 // (5) Komponenty
@@ -187,7 +186,7 @@ const drinks = [
     image: 'https://apps.kodim.cz/daweb/cafelora/assets/cups/romano.png',
   },
 ];
-const drinksList = document.querySelector('.drinks-list');
+const drinksListElm = document.querySelector('.drinks-list');
 for (let i = 0; i < drinks.length; i++) {
-  drinksList.appendChild(Drink(drinks[i]));
+  drinksListElm.appendChild(Drink(drinks[i]));
 }

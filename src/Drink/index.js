@@ -2,7 +2,7 @@ import { Layer } from '../Layer/index.js';
 import './style.css';
 
 export const Drink = (props) => {
-  const { id, name, ordered, layers, image } = props;
+  let { id, name, ordered, layers, image } = props;
 
   const drinkElm = document.createElement('div');
   drinkElm.classList.add('drink');
@@ -18,32 +18,40 @@ export const Drink = (props) => {
   </div>
 </div>
 <div class="drink__controls">
-  <button class="order-btn">Objednat</button>
+
 </div>`;
+
+  // Objednávání přes vlastní DOM element
+
+  //vytvoření order btn
+  const orderButton = document.createElement('button');
+  orderButton.classList.add('order-btn');
+  orderButton.textContent += 'Objednat';
+
+  drinkElm.querySelector('.drink__controls').appendChild(orderButton);
+
+  // Objednávání
+  ordered = false;
+  const orderBtnElm = drinkElm.querySelector('.order-btn');
+  orderBtnElm.addEventListener('click', () => {
+    const drinkCupElm = drinkElm.querySelector('.drink__cup');
+    if (!ordered) {
+      orderBtnElm.textContent = 'Zrušit';
+      drinkCupElm.classList.add('drink__cup--selected');
+      ordered = true;
+    } else {
+      orderBtnElm.textContent = 'Objednat';
+      drinkCupElm.classList.remove('drink__cup--selected');
+      ordered = false;
+    }
+  });
+
+  console.log(orderBtnElm);
 
   const drinkInfo = drinkElm.querySelector('.drink__info');
   for (let i = 0; i < layers.length; i++) {
     drinkInfo.appendChild(Layer(layers[i]));
   }
+
   return drinkElm;
 };
-
-// Objednávání před vlastní DOM//
-
-/*const orderBtnElm = drinkElm.querySelector('.order-btn');
-let ordered = false;
-
-const orderCoffee = () => {
-  if (!ordered) {
-    orderBtnElm.textContent = 'Zrušit';
-    drinkElm.querySelector('.drink__cup').classList.add('drink__cup--selected');
-    orderBtnElm.addEventListener('click', orderCoffee);
-    ordered = true;
-  } else {
-    orderBtnElm.textContent = 'Objednat';
-    drinkElm
-      .querySelector('.drink__cup')
-      .classList.remove('drink__cup--selected');
-    ordered = false;
-  }
-}; */
