@@ -236,7 +236,7 @@ nav a:hover {
 }
 
 .gallery {
-  padding-top: 0;
+  padding-top: calc(50% / 2);
   min-height: 100vh;
 
   color: white;
@@ -244,6 +244,13 @@ nav a:hover {
   background-size: cover;
   background-position: top center;
   background-attachment: fixed;
+}
+
+#gallery__text {
+  text-align: center;
+  background: rgba(107, 55, 55, 0.865);
+  font-size: 2em;
+  align-items: center;
 }
 
 .contacts {
@@ -309,7 +316,7 @@ nav a:hover {
   .drink {
     width: 33.333%;
   }
-  .nav-btn {
+  #nav-btn {
     display: none;
   }
 }
